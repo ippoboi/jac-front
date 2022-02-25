@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "title": "Formation #2 - Paris",
+        "description": "Test Description",
+        "is_open": true,
+        "is_active": false,
+        "places_nb": 50,
+        "admin_id": 2,
+        "category": "Formation",
+        "date": "Jeudi 12 Mars",
+        "created_at": "Mercredi 8 Mars"
+    },
+    {
+        "id": "2",
+        "title": "Colloque d'hiver - Paris",
+        "description": "Test Description",
+        "is_open": true,
+        "is_active": false,
+        "places_nb": 4,
+        "admin_id": 2,
+        "category": "Entraide",
+        "date": "Jeudi 20 Mars",
+        "created_at": "Mercredi 2 Mars"
+    }
+]
