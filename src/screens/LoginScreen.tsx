@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import { EvilIcons, FontAwesome } from '@expo/vector-icons'; 
 import { Component, useState } from 'react'
+import CustomButton from '../components/CustomButton';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -38,9 +39,7 @@ export default function LoginScreen() {
       <TouchableOpacity>
         <Text style={styles.forgotBtn}>Mot de passe oublié ?</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>Se connecter</Text>
-      </TouchableOpacity>
+      <CustomButton text="Se connecter" />
       <View style={styles.signup}>
         <Text>Pas encore inscrit ?</Text>
         <TouchableOpacity>
@@ -95,20 +94,6 @@ const styles = StyleSheet.create({
   marginTop: 30,
   height: 30,
   marginBottom: 20
-  },
-  loginBtn: {
-  borderRadius: 13,
-  width: 330,
-  height:50,
-  alignItems:"center",
-  justifyContent:"center",
-  marginTop:10,
-  backgroundColor:"#0065FF",
-  },
-  loginText: {
-  color: 'white',
-  fontSize: 18,
-  fontWeight: 'bold',
   },
   signupBtn: {
   color: '#1962D0',
