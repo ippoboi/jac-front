@@ -1,20 +1,13 @@
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
-import { useFonts, Poppins_600SemiBold } from '@expo-google-fonts/poppins';
 
-interface ICustomButtonProps {
-    text?: string
-}
+export default function CustomButton({text}: any) {
 
-export default class CustomButton extends Component<ICustomButtonProps> {
-  render() {
-    let {text} = this.props;
     return (
         <TouchableOpacity style={styles.loginBtn}>
             <Text style={styles.loginText}>{text}</Text>
         </TouchableOpacity>
     )
-  }
 }
 
 const styles = StyleSheet.create({

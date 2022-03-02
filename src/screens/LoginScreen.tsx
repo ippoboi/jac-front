@@ -3,6 +3,7 @@ import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity } from 'reac
 import { EvilIcons, FontAwesome } from '@expo/vector-icons'; 
 import { Component, useState } from 'react'
 import CustomButton from '../components/CustomButton';
+import CustomTextInput from '../components/CustomTextInput';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -15,22 +16,20 @@ export default function LoginScreen() {
       <Text style={styles.title}>Connexion à mon compte UNICEF</Text>
 
       <View style={styles.emailContainer}>
-      <TextInput 
-        style={styles.textInput} 
-        placeholder="Adresse mail" 
-        placeholderTextColor={'#9A9FA7'} 
+      <CustomTextInput  
+        placeholderText = "Adresse mail" 
+        isPassword = {false}
+        value={email}
         onChangeText={(email) => setEmail(email)}
       />
       <FontAwesome name="at" size={30} color="#9A9FA7" />
       </View>
 
       <View style={styles.emailContainer}>
-      <TextInput 
-        style={styles.textInput} 
-        placeholder="Mot de passe" 
-        placeholderTextColor={'#9A9FA7'} 
-        autoCorrect={false}
-        secureTextEntry={true} 
+      <CustomTextInput 
+        placeholderText ="Mot de passe" 
+        isPassword = {true}
+        value = {password} 
         onChangeText={(password) => setPassword(password)}
       />
       <EvilIcons name="lock" size={30} color="#9A9FA7" />
