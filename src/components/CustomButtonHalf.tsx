@@ -1,26 +1,25 @@
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
-import React, { Component } from 'react'
+import { Text, TouchableOpacity, StyleSheet } from 'react-native'
+import React from 'react'
 
-interface ICustomButtonProps {
-    text?: string
+
+interface Props {
+    text: any,
+
 }
 
-export default class CustomButton extends Component<ICustomButtonProps> {
-  render() {
-    let {text} = this.props;
+export default function CustomButtonHalf({text}: Props) {
     return (
-        <TouchableOpacity style={styles.loginBtn}>
+        <TouchableOpacity style={styles.loginBtn} >
             <Text style={styles.loginText}>{text}</Text>
         </TouchableOpacity>
     )
-  }
 }
 
 const styles = StyleSheet.create({
     loginBtn: {
         borderRadius: 13,
         width: 165,
-        height:50,
+        height: 50,
         alignItems:"center",
         justifyContent:"center",
         marginTop:10,

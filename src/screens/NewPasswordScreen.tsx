@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View, Image, StyleSheet, useWindowDimensions } from 'react-native'
-import { MaterialIcons} from '@expo/vector-icons'; 
+import { MaterialIcons, FontAwesome5} from '@expo/vector-icons'; 
 import React, { useState } from 'react'
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
 
-export default function ForgotPasswordScreen() {
-  const [email, setEmail] = useState('');
+export default function NewPasswordScreen() {
+  const [newPassword, setNewPassword] = useState('');
 
   const {height} = useWindowDimensions();
 
@@ -18,20 +18,20 @@ export default function ForgotPasswordScreen() {
     <View style={styles.container}>
       <StatusBar style='auto'/>
       <Image style={[styles.logo, {height: height * 0.3}]} source={require('C:/Users/ingan/Desktop/JAC22/jac-front/assets/logo.png')} resizeMode="contain"></Image>
-      <Text style={styles.title}>Mot de passe oublié ?</Text>
+      <Text style={styles.title}>Nouveau mot de passe</Text>
 
       <View style={styles.emailContainer}>
       <CustomTextInput  
-        placeholder = "Adresse mail" 
-        value={email}
-        onChangeText={(email) => setEmail(email)}
+        placeholder = "Nouveau mot de passe" 
+        value={newPassword}
+        onChangeText={(newPassword) => setNewPassword(newPassword)}
       />
-      <MaterialIcons name="alternate-email" size={27} color="#9A9FA7" />
+      <FontAwesome5 name="lock" size={27} color="#9A9FA7" />
       </View>
 
-      <Text style={styles.infoText}>Saisissez votre e-mail, afin que nous vous envoyions un lien vous permettant de modifier votre mot de passe.</Text>
+      <Text style={styles.infoText}>Saisissez votre nouveau mot de passe</Text>
 
-      <CustomButton text="Envoyer" onPress={onResetPasswordPressed}/>
+      <CustomButton text="Réinitialiser mon mot de passe" onPress={onResetPasswordPressed}/>
     </View>
   )
 }

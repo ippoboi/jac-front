@@ -1,49 +1,63 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
-import { EvilIcons, FontAwesome } from '@expo/vector-icons'; 
-import { Component, useState } from 'react'
+import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity, useWindowDimensions } from 'react-native'
+import { FontAwesome5, MaterialIcons} from '@expo/vector-icons'; 
+import React, { useState } from 'react'
+import { useNavigation } from '@react-navigation/native';
+
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
+import CustomButtonWoBorder from '../components/CustomButtonWoBorder';
+
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const {height} = useWindowDimensions();
+  const navigation = useNavigation()
+
+  const onSignUpPressed = () => {
+    console.warn("Sign up")
+  }
+
+  const onForgotPasswordPressed = () => {
+    console.warn("Forgot Password")
+  }
+
+  const onLoginPressed = () => {
+    console.warn("Login")
+  }
+  
   return (
     <View style={styles.container}>
       <StatusBar style='auto'/>
-      <Image style={styles.logo} source={require('C:/Users/ingan/Desktop/JAC22/jac-front/assets/logo.png')}></Image>
+      <Image style={[styles.logo, {height: height * 0.3}]} source={require('C:/Users/ingan/Desktop/JAC22/jac-front/assets/logo.png')} resizeMode="contain"></Image>
       <Text style={styles.title}>Connexion à mon compte UNICEF</Text>
 
       <View style={styles.emailContainer}>
       <CustomTextInput  
-        placeholderText = "Adresse mail" 
-        isPassword = {false}
+        placeholder = "Adresse mail" 
         value={email}
         onChangeText={(email) => setEmail(email)}
       />
-      <FontAwesome name="at" size={30} color="#9A9FA7" />
+      <MaterialIcons name="alternate-email" size={27} color="#9A9FA7" />
       </View>
 
       <View style={styles.emailContainer}>
       <CustomTextInput 
-        placeholderText ="Mot de passe" 
+        placeholder ="Mot de passe" 
         isPassword = {true}
         value = {password} 
         onChangeText={(password) => setPassword(password)}
       />
-      <EvilIcons name="lock" size={30} color="#9A9FA7" />
+      <FontAwesome5 name="lock" size={27} color="#9A9FA7" />
       </View>
 
-      <TouchableOpacity>
-        <Text style={styles.forgotBtn}>Mot de passe oublié ?</Text>
-      </TouchableOpacity>
-      <CustomButton text="Se connecter" />
+      <CustomButtonWoBorder text="Mot de passe oublié ?" onPress={onForgotPasswordPressed}/>
+      <CustomButton text="Se connecter" onPress={onLoginPressed}/>
       <View style={styles.signup}>
         <Text>Pas encore inscrit ?</Text>
-        <TouchableOpacity>
-          <Text style={styles.signupBtn}>S'inscrire</Text>
-        </TouchableOpacity>
+        <CustomButtonWoBorder text="S'inscrire" onPress={onSignUpPressed}/>
       </View>
     </View>
   )
@@ -61,14 +75,13 @@ const styles = StyleSheet.create({
   },
   logo: {
   width: 176,
-  height: 176,
-  marginBottom: 60,
+  marginBottom: 20,
   },
   title: {
   color: '#172B4D',
   width: '80%',
   marginLeft: '-10%',
-  marginBottom: 30,
+  marginBottom: "7%",
   fontSize: 30,
   fontWeight: 'bold',
   },
@@ -76,32 +89,6 @@ const styles = StyleSheet.create({
   flexDirection: 'row-reverse',
   paddingBottom: 10,
   alignItems: 'center',
-  },
-  textInput: {
-  height: 50,
-  width: 270,
-  padding: 5,
-  marginLeft: 10,
-  borderBottomWidth: 2,
-  borderColor: '#DDDEE1'
-  },
-
-  forgotBtn: {
-  color: '#1962D0',
-  fontSize: 13,
-  fontWeight: '700',
-  marginTop: 30,
-  height: 30,
-  marginBottom: 20
-  },
-  signupBtn: {
-  color: '#1962D0',
-  fontSize: 13,
-  fontWeight: '700',
-  marginTop: 30,
-  height: 30,
-  marginBottom: 20,
-  paddingLeft: 5,
   },
   signup: {
   flexDirection: 'row',

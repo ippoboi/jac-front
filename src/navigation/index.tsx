@@ -7,6 +7,10 @@ import LoginScreen from "../screens/LoginScreen";
 import AccountScreen from "../screens/AccountScreen";
 import FaqScreen from "../screens/FaqScreen";
 import NewsFeedScreen from "../screens/NewsFeedScreen";
+import SignUpScreen from "../screens/SignUpScreen";
+import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
+import NewPasswordScreen from "../screens/NewPasswordScreen";
+import React from "react";
 
 export default function Navigation() {
 
@@ -17,20 +21,33 @@ export default function Navigation() {
     )
 }
 
+const navigationRef = React.createRef()
+
 const Stack = createNativeStackNavigator();
 function RootNavigator() {
 
     return (
-        <Stack.Navigator>
-                    {/* <Stack.Screen
-                        name="Root"
-                        component={BottomTabNavigator}
-                        options={{headerShown: false}}
-                    /> */}
-                    <Stack.Screen 
-                        name="Login"
-                        component={LoginScreen}
-                    />
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+                <Stack.Screen 
+                    name="Login"
+                    component={LoginScreen}
+                />
+                <Stack.Screen 
+                    name="NewPassword"
+                    component={NewPasswordScreen}
+                />
+                <Stack.Screen
+                    name="SignUp"
+                    component={SignUpScreen}
+                />
+                <Stack.Screen
+                    name="ForgotPassword"
+                    component={ForgotPasswordScreen}
+                />
+                <Stack.Screen
+                    name="Root"
+                    component={BottomTabNavigator}
+                />    
         </Stack.Navigator>
     )
 }

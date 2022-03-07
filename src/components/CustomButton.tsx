@@ -1,17 +1,21 @@
 import { Text, TouchableOpacity, StyleSheet } from 'react-native'
-import React, { Component } from 'react'
+import React from 'react'
 
-export default function CustomButton({text}: any) {
+interface Props {
+    text: string,
+    onPress: () => void,
+}
 
+export default function CustomButton({text, onPress}: Props) {
     return (
-        <TouchableOpacity style={styles.loginBtn}>
-            <Text style={styles.loginText}>{text}</Text>
+        <TouchableOpacity style={styles.Btn} onPress={onPress}>
+            <Text style={styles.Text}>{text}</Text>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
-    loginBtn: {
+    Btn: {
         borderRadius: 13,
         width: 330,
         height:50,
@@ -20,7 +24,7 @@ const styles = StyleSheet.create({
         marginTop:10,
         backgroundColor:"#0065FF",
         },
-    loginText: {
+    Text: {
         color: 'white',
         fontSize: 18,
         fontWeight: 'bold',

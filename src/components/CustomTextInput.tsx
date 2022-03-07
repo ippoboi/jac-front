@@ -1,14 +1,19 @@
 import { StyleSheet, TextInput } from 'react-native'
 import React from 'react'
 
+interface Props {
+    value: string,
+    onChangeText: (text: string) => void, 
+    placeholder: string, 
+    isPassword?: boolean
+}
 
-export default function CustomTextInput(this: any, {value, onChangeText, placeholderText, isPassword}: 
-    {value: string, onChangeText: (text: string) => void, placeholderText: string, isPassword: boolean}) {
+export default function CustomTextInput({value, onChangeText, placeholder, isPassword}: Props) {
 
     return (
         <TextInput 
         style={styles.textInput} 
-        placeholder={placeholderText} 
+        placeholder={placeholder} 
         placeholderTextColor={'#9A9FA7'} 
         autoCorrect={false}
         secureTextEntry={isPassword}
@@ -26,6 +31,7 @@ const styles = StyleSheet.create({
         padding: 5,
         marginLeft: 10,
         borderBottomWidth: 2,
-        borderColor: '#DDDEE1'
+        borderColor: "#DDDEE1",
+        fontWeight: "700"
         },
 })
