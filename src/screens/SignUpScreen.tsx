@@ -5,6 +5,12 @@ import React, { useState } from 'react'
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
 import CustomButtonWoBorder from '../components/CustomButtonWoBorder';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { AuthStackParamList } from '../navigation';
+import { NavigationContainerRefContext, useNavigation } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+type authScreenNavigationType = NativeStackNavigationProp<AuthStackParamList, "SignUp">
 
 export default function SignUpScreen() {
   const [firstName, setFirstName] = useState('');
@@ -13,12 +19,13 @@ export default function SignUpScreen() {
   const [password, setPassword] = useState('');
 
   const {height} = useWindowDimensions();
+  const navigation = useNavigation<authScreenNavigationType>();
 
   const onSignInPressed = () => {
-    console.warn("Sign in")
+    navigation.navigate('Login')
   }
   const onLoginPressed = () => {
-    console.warn("Login")
+    navigation.navigate('Login')
   }
   const onTermsOfUsePressed = () => {
     console.warn("Terms of Use")
@@ -33,6 +40,7 @@ export default function SignUpScreen() {
   return (
     <View style={styles.container}>
       <StatusBar style='auto'/>
+      <SafeAreaView/>
       <Image style={[styles.logo, {height: height * 0.3}]} source={require('C:/Users/ingan/Desktop/JAC22/jac-front/assets/logo.png')} resizeMode="contain"></Image>
       <Text style={styles.title}>Inscription</Text>
 

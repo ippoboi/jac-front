@@ -1,12 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity, useWindowDimensions } from 'react-native'
-import { FontAwesome5, MaterialIcons} from '@expo/vector-icons'; 
+import { Entypo, FontAwesome5, MaterialIcons} from '@expo/vector-icons'; 
 import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
-import CustomButtonWoBorder from '../components/CustomButtonWoBorder';
+import CustomButtonWoBorder from '../components/CustomButtonWoBorder';import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { AuthStackParamList } from '../navigation';
+
+
+type authScreenNavigationType = NativeStackNavigationProp<AuthStackParamList, "Login">
 
 
 export default function LoginScreen() {
@@ -14,18 +18,18 @@ export default function LoginScreen() {
   const [password, setPassword] = useState('');
 
   const {height} = useWindowDimensions();
-  const navigation = useNavigation()
+  const navigation = useNavigation<authScreenNavigationType>()
 
   const onSignUpPressed = () => {
-    console.warn("Sign up")
+    navigation.navigate('SignUp')
   }
 
   const onForgotPasswordPressed = () => {
-    console.warn("Forgot Password")
+    navigation.navigate('ForgotPassword')
   }
 
   const onLoginPressed = () => {
-    console.warn("Login")
+    navigation.navigate('Root')
   }
   
   return (
@@ -44,13 +48,14 @@ export default function LoginScreen() {
       </View>
 
       <View style={styles.emailContainer}>
-      <CustomTextInput 
-        placeholder ="Mot de passe" 
-        isPassword = {true}
-        value = {password} 
-        onChangeText={(password) => setPassword(password)}
-      />
-      <FontAwesome5 name="lock" size={27} color="#9A9FA7" />
+        <TouchableOpacity style={styles.eyeBtn}><Entypo name="eye-with-line" size={26} color="#9A9FA7"/></TouchableOpacity>
+        <CustomTextInput 
+          placeholder ="Mot de passe" 
+          isPassword = {true}
+          value = {password} 
+          onChangeText={(password) => setPassword(password)}
+        />
+        <FontAwesome5 name="lock" size={27} color="#9A9FA7" />
       </View>
 
       <CustomButtonWoBorder text="Mot de passe oublié ?" onPress={onForgotPasswordPressed}/>
@@ -93,5 +98,10 @@ const styles = StyleSheet.create({
   signup: {
   flexDirection: 'row',
   alignItems: 'center'
+  },
+  eyeBtn: {
+    position: 'absolute',
+    right: "80%",
+    top: 12
   }
 }) 

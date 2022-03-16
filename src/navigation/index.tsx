@@ -21,17 +21,27 @@ export default function Navigation() {
     )
 }
 
-const navigationRef = React.createRef()
+type AuthStackParamList = {
+    Login: undefined,
+    NewPassword: undefined,
+    SignUp: undefined,
+    ForgotPassword: undefined,
+    Root: undefined
+}
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<AuthStackParamList>();
 function RootNavigator() {
 
     return (
         <Stack.Navigator screenOptions={{headerShown: false}}>
-                <Stack.Screen 
+               <Stack.Screen
                     name="Login"
                     component={LoginScreen}
                 />
+               <Stack.Screen
+                    name="Root"
+                    component={BottomTabNavigator}
+                />   
                 <Stack.Screen 
                     name="NewPassword"
                     component={NewPasswordScreen}
@@ -43,11 +53,7 @@ function RootNavigator() {
                 <Stack.Screen
                     name="ForgotPassword"
                     component={ForgotPasswordScreen}
-                />
-                <Stack.Screen
-                    name="Root"
-                    component={BottomTabNavigator}
-                />    
+                />  
         </Stack.Navigator>
     )
 }
@@ -55,7 +61,7 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator();
 function BottomTabNavigator() {
     return(
-        <BottomTab.Navigator initialRouteName="Feed">
+        <BottomTab.Navigator initialRouteName="Feed" screenOptions={{headerShown: false}}>
             <BottomTab.Screen 
                 name="Feed"
                 component={NewsFeedScreen}
