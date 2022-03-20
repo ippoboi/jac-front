@@ -1,11 +1,9 @@
-import { Text, View } from 'react-native'
-
-import { useState } from 'react'
+import { SafeAreaView, Text, View } from "react-native";
 
 export default function FaqScreen() {
-    return (
-      <View>
-        <Text>Faq Screen</Text>
-      </View>
-    )
-  }
+  return (
+    <SafeAreaView>
+      <Text>Foire Aux Questions</Text>
+    </SafeAreaView>
+  );
+}

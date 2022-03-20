@@ -1,0 +1,12 @@
+[
+  {
+    "id": "1",
+    "surname": "BODIN",
+    "firstname": "Guillaume",
+    "age": 65,
+    "phone_number": "07 81 31 54 00",
+    "mail": "guillaume-b@hotmail.com",
+    "job": "Professeur des écoles",
+    "last_connection": "10/02/2022"
+  }
+]

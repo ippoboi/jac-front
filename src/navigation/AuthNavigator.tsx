@@ -1,13 +1,10 @@
-import React from 'react'
-import LoginScreen from '../screens/LoginScreen'
-import Navigation from '.'
-import { useAuth } from '../context/AuthContext'
+import React from "react";
+import { LoginNavigator } from "./LoginNavigator";
+import { useAuth } from "../context/AuthContext";
+import { BottomTabNavigator } from "./BottomTabNav";
 
-export default function AuthNavigator(): any {
-    const { isAuthentificated }: any = useAuth()
-    if(!isAuthentificated) {
-        return <LoginScreen />
-    } else {
-        return <Navigation />
-    }
+export default function AuthNavigator() {
+  const { isAuthentificated } = useAuth();
+  if (isAuthentificated) return <BottomTabNavigator />;
+  return <LoginNavigator />;
 }

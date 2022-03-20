@@ -17,7 +17,7 @@ export default function ForgotPasswordScreen() {
   return (
     <View style={styles.container}>
       <StatusBar style='auto'/>
-      <Image style={[styles.logo, {height: height * 0.3}]} source={require('C:/Users/ingan/Desktop/JAC22/jac-front/assets/logo.png')} resizeMode="contain"></Image>
+      <Image style={[styles.logo, {height: height * 0.3}]} source={require('../../assets/logo.png')} resizeMode="contain"></Image>
       <Text style={styles.title}>Mot de passe oublié ?</Text>
 
       <View style={styles.emailContainer}>

@@ -6,7 +6,7 @@ import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
 import CustomButtonWoBorder from '../components/CustomButtonWoBorder';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { AuthStackParamList } from '../navigation';
+import { AuthStackParamList } from '../navigation/LoginNavigator';
 import { NavigationContainerRefContext, useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -40,8 +40,7 @@ export default function SignUpScreen() {
   return (
     <View style={styles.container}>
       <StatusBar style='auto'/>
-      <SafeAreaView/>
-      <Image style={[styles.logo, {height: height * 0.3}]} source={require('C:/Users/ingan/Desktop/JAC22/jac-front/assets/logo.png')} resizeMode="contain"></Image>
+      <Image style={[styles.logo, {height: height * 0.3}]} source={require('../../assets/logo.png')} resizeMode="contain"></Image>
       <Text style={styles.title}>Inscription</Text>
 
       <View style={styles.emailContainer}>
