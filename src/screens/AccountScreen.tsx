@@ -14,6 +14,17 @@ import { RFPercentage } from "react-native-responsive-fontsize";
 import CustomButtonHalf from "../components/CustomButtonHalf";
 
 export default function AccountScreen() {
+  const onDowloadPressed = () => {
+    console.log("Download");
+  };
+  const onChangePasswordPressed = () => {
+    console.log("Change Password");
+  };
+
+  const onEditInfoPresse = () => {
+    console.log("Edit Info");
+  };
+
   const renderItem = ({ item }: any) => (
     <View>
       <Text>{"Nom : " + item.surname}</Text>
@@ -63,8 +74,14 @@ export default function AccountScreen() {
             />
           </View>
           <View style={styles.btnInfo}>
-            <CustomButtonHalf text="Changer de mot de passe" />
-            <CustomButtonHalf text="Modifier les informations" />
+            <CustomButtonHalf
+              text="Changer de mot de passe"
+              onPress={onChangePasswordPressed}
+            />
+            <CustomButtonHalf
+              text="Modifier les informations"
+              onPress={onEditInfoPresse}
+            />
           </View>
         </View>
         <View style={styles.card}>
@@ -86,7 +103,7 @@ export default function AccountScreen() {
             </View>
           </View>
           <View style={styles.btnDownload}>
-            <CustomButtonHalf text="Télécharger" />
+            <CustomButtonHalf text="Télécharger" onPress={onDowloadPressed} />
           </View>
         </View>
       </View>
@@ -98,11 +115,9 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 20,
     alignItems: "center",
-    // backgroundColor: "red",
   },
   title: {
     fontSize: 30,
-    // backgroundColor: "blue",
     color: "#172B4D",
     fontWeight: "700",
   },
@@ -117,7 +132,6 @@ const styles = StyleSheet.create({
   },
   nameFilter: {
     width: "85%",
-    // backgroundColor: "green",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -155,12 +169,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cardTitleInfo: {
-    fontWeight: "600",
+    color: "#172B4D",
+    fontWeight: "700",
     fontSize: RFPercentage(3),
     paddingLeft: 10,
   },
   cardTitleRules: {
-    fontWeight: "600",
+    fontWeight: "700",
+    color: "#172B4D",
     fontSize: RFPercentage(2.3),
     paddingLeft: 10,
   },
@@ -168,5 +184,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  btnDownload: {},
+  btnDownload: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
 });

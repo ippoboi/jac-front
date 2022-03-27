@@ -1,35 +1,57 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacityBase,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { EventInfo } from "../types/data";
-import formation from "../../assets/formation.png";
 import { RFPercentage } from "react-native-responsive-fontsize";
-import CustomButtonHalf from "./CustomButtonHalf";
+import CustomButton from "./CustomButton";
+import DropShadow from "react-native-drop-shadow";
 
 export default function EventComponent({ item }: { item: EventInfo }) {
+  const onParticipatePressed = () => {
+    console.log("Participate");
+  };
+
   return (
     <View>
       <View style={styles.card}>
         <View style={styles.infoTitle}>
           <View
-            style={{ backgroundColor: "#FFF1D1", padding: 5, borderRadius: 30 }}
+            style={{
+              backgroundColor: "#FFF1D1",
+              padding: 7,
+              borderRadius: 30,
+            }}
           >
             <Image
-              source={formation}
+              source={require("../../assets/formation.png")}
               style={{
-                width: 16,
-                height: 16,
+                width: 18,
+                height: 18,
               }}
             />
           </View>
-          <Text>{item.title}</Text>
+          <Text style={styles.title}>{item.title}</Text>
         </View>
-        <View>
-          <Text>{item.description}</Text>
-        </View>
-        <View style={styles.dateBtn}>
-          <Text>{item.date}</Text>
-          <View style={styles.btnInfo}>
-            <CustomButtonHalf text="Y participer" />
+        <TouchableOpacity activeOpacity={0.9}>
+          <Text style={{ color: "#172B4D", padding: 10 }} numberOfLines={9}>
+            {item.description}
+          </Text>
+        </TouchableOpacity>
+        <View style={styles.cardFooter}>
+          <View style={styles.date}>
+            <Text style={{ fontSize: 20, fontWeight: "700", color: "#172B4D" }}>
+              {item.date}
+            </Text>
+            <Text style={{ fontSize: 12, color: "#7C818F" }}>{item.hours}</Text>
+          </View>
+          <View style={{ width: "50%" }}>
+            <CustomButton text="Y participer" onPress={onParticipatePressed} />
           </View>
         </View>
       </View>
@@ -39,36 +61,52 @@ export default function EventComponent({ item }: { item: EventInfo }) {
 
 const styles = StyleSheet.create({
   card: {
-    padding: 10,
     margin: 10,
     backgroundColor: "#FFFFFF",
-    width: "85%",
     borderRadius: 13,
     shadowColor: "black",
     elevation: 10,
   },
   infoContainer: {
     padding: 10,
+    height: 200,
   },
   infoTitle: {
-    padding: 10,
+    paddingTop: 15,
+    paddingBottom: 10,
+    paddingHorizontal: 15,
     flexDirection: "row",
     alignItems: "center",
     borderBottomColor: "#DDDEE1",
     borderBottomWidth: 1,
+  },
+  title: {
+    fontSize: 20,
+    color: "#172B4D",
+    paddingLeft: 15,
+    fontWeight: "700",
   },
   cardTitleInfo: {
     fontWeight: "600",
     fontSize: RFPercentage(3),
     paddingLeft: 10,
   },
-  btnInfo: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+  date: {
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    paddingLeft: 15,
   },
-  dateBtn: {
+  cardFooter: {
+    color: "#172B4D",
     flexDirection: "row",
     alignItems: "center",
-    // backgroundColor: "red",
+    backgroundColor: "#F8F8F8",
+    justifyContent: "space-between",
+    borderTopWidth: 1,
+    borderTopColor: "#DDDEE1",
+    borderBottomLeftRadius: 13,
+    borderBottomRightRadius: 13,
+    paddingTop: 5,
+    paddingBottom: 10,
   },
 });

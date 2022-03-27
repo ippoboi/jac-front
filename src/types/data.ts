@@ -8,6 +8,7 @@ export interface EventInfo {
   admin_id: number;
   category: Categories;
   date: string;
+  hours: string;
   created_at: string;
 }
 

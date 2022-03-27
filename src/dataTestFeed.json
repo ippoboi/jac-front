@@ -2,25 +2,27 @@
   {
     "id": "1",
     "title": "Formation #2 - Paris",
-    "description": "Présentation de nos nouvelles actions à mettre en place d'ici 2035 en Afrique centrale avec :\n●  Jean-Marie Bertholo (président d'honneur)\n●  Marie Lesauveur (coprésidente)\n●  Edgar Baudwick\n●  Regie Fils-Aimé\nLe programme présenté aux colloques des Parisiens ut molestie dui non arcu condimentum rhoncus.\nAliquam erat volutpat. Etiam fermentum felis quis dapibus bibendum. Maecenas luctus velit ut augue molestie, nec auctor ex maximus. Donec sed eleifend orci, vitae iaculis dolor.\nDuis in faucibus nisl. Cras finibus ex augue, vel tincidunt odio mollis sit amet. Integer neque urna.",
+    "description": "Présentation de nos nouvelles actions à mettre en place d'ici 2035 en Afrique centrale avec :\n\n●  Jean-Marie Bertholo (président d'honneur)\n●  Marie Lesauveur (coprésidente)\n●  Edgar Baudwick\n●  Regie Fils-Aimé\n\nLe programme présenté aux colloques des Parisiens ut molestie dui non arcu condimentum rhoncus.\nAliquam erat volutpat. Etiam fermentum felis quis dapibus bibendum. Maecenas luctus velit ut augue molestie, nec auctor ex maximus. Donec sed eleifend orci, vitae iaculis dolor.\nDuis in faucibus nisl. Cras finibus ex augue, vel tincidunt odio mollis sit amet. Integer neque urna.",
     "is_open": true,
     "is_active": false,
     "places_nb": 50,
     "admin_id": 2,
     "category": "Formation",
     "date": "Jeudi 12 Mars",
+    "hours": "16:00 - 19:00",
     "created_at": "Mercredi 8 Mars"
   },
   {
     "id": "2",
     "title": "Colloque d'hiver - Paris",
-    "description": "Test Description",
+    "description": "Présentation de nos nouvelles actions à mettre en place d'ici 2035 en Afrique centrale avec :\n\n●  Jean-Marie Bertholo (président d'honneur)\n●  Marie Lesauveur (coprésidente)\n●  Edgar Baudwick\n●  Regie Fils-Aimé\n\nLe programme présenté aux colloques des Parisiens ut molestie dui non arcu condimentum rhoncus.\nAliquam erat volutpat. Etiam fermentum felis quis dapibus bibendum. Maecenas luctus velit ut augue molestie, nec auctor ex maximus. Donec sed eleifend orci, vitae iaculis dolor.\nDuis in faucibus nisl. Cras finibus ex augue, vel tincidunt odio mollis sit amet. Integer neque urna.",
     "is_open": true,
     "is_active": false,
     "places_nb": 4,
     "admin_id": 2,
     "category": "Entraide",
     "date": "Jeudi 20 Mars",
+    "hours": "16:00 - 19:00",
     "created_at": "Mercredi 2 Mars"
   }
 ]
