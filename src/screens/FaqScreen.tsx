@@ -1,20 +1,25 @@
 import { SafeAreaView, Text, View, StyleSheet, ScrollView } from "react-native";
 
-import React, { useState } from "react";
-
+import React from "react";
+import FaqData from "../faqdata.json";
 import FaqComponent from "../components/FaqComponent";
 
-export default function AccountScreen() {
+export default function FaqScreen() {
   return (
     <SafeAreaView>
       <View style={styles.container}>
         <Text style={styles.title}>Foire Aux Questions</Text>
       </View>
       <ScrollView style={{ marginBottom: 67 }}>
-        <FaqComponent text={"Comment s'inscrire à un événement ?"} />
-        <FaqComponent text={"Puis-je changer mon mot de passe ?"} />
-        <FaqComponent text={"Puis-je participer à tous les événements ?"} />
-        <FaqComponent text={"Comment puis-je obtenir une assistance ?"} />
+        {FaqData.FaqObj.map((faqobj, index) => {
+          return (
+            <FaqComponent
+              key={index}
+              text={faqobj.Question}
+              paragraph={faqobj.Answer}
+            />
+          );
+        })}
       </ScrollView>
     </SafeAreaView>
   );

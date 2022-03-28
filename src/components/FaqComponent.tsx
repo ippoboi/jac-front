@@ -4,9 +4,10 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 interface Props {
   text: string;
+  paragraph: string;
 }
 
-export default function faqComponent({ text }: Props) {
+export default function faqComponent({ text, paragraph }: Props) {
   const [isOpen, setOpen] = useState(false);
 
   if (isOpen) {
@@ -31,21 +32,7 @@ export default function faqComponent({ text }: Props) {
             />
             <Text style={styles.title}>{text}</Text>
           </View>
-          <Text style={styles.paragraph}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            varius mollis eleifend. Praesent feugiat magna nisl, a volutpat
-            purus semper et. Cras consectetur ligula in malesuada rutrum. Duis
-            eu tempus sapien, eu mattis erat. Etiam faucibus, turpis at rhoncus
-            vehicula, purus felis porta ipsum, at scelerisque lacus arcu eget
-            leo. Mauris arcu metus, gravida sed lacus a, mattis fermentum dolor.
-            Proin finibus massa sapien, vitae posuere ipsum semper et. In nisi
-            arcu, dapibus sit amet placerat ut, vestibulum id eros. Fusce rutrum
-            ligula mi, nec porta arcu porta ut. Nulla id erat id diam
-            sollicitudin imperdiet. Sed ut sem nec nisl faucibus congue. Nam
-            bibendum, nisl sed feugiat tincidunt, eros arcu tristique augue, et
-            efficitur sem magna in justo. Duis vel augue in urna convallis
-            consectetur.
-          </Text>
+          <Text style={styles.paragraph}>{paragraph}</Text>
         </TouchableOpacity>
       </View>
     );
