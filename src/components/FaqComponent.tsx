@@ -1,21 +1,47 @@
 import { AntDesign } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Platform,
+  UIManager,
+  LayoutAnimation,
+} from "react-native";
 
 interface Props {
   text: string;
   paragraph: string;
 }
 
+if (
+  Platform.OS === "android" &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
+
 export default function faqComponent({ text, paragraph }: Props) {
   const [isOpen, setOpen] = useState(false);
+  const FaqAnimation = () => {
+    LayoutAnimation.configureNext(
+      LayoutAnimation.create(
+        500,
+        LayoutAnimation.Types.easeInEaseOut,
+        LayoutAnimation.Properties.scaleX
+      )
+    );
+  };
 
   if (isOpen) {
     return (
       <View style={{ alignItems: "center", marginTop: 10 }}>
         <TouchableOpacity
           style={styles.faqContainer}
-          onPress={() => setOpen(false)}
+          onPress={() => {
+            setOpen(false);
+          }}
           activeOpacity={0.8}
         >
           <View style={styles.titleContainer}>
@@ -41,7 +67,9 @@ export default function faqComponent({ text, paragraph }: Props) {
       <View style={{ alignItems: "center", marginTop: 10 }}>
         <TouchableOpacity
           style={styles.faqContainerClosed}
-          onPress={() => setOpen(true)}
+          onPress={() => {
+            setOpen(true);
+          }}
           activeOpacity={0.8}
         >
           <AntDesign

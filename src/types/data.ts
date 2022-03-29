@@ -12,4 +12,4 @@ export interface EventInfo {
   created_at: string;
 }
 
-export type Categories = "Formation" | "Maraudes" | "Donations" | "Récoltes";
+export type Categories = "Formation" | "Maraudes" | "Donations" | "Entraide";

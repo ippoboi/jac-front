@@ -73,15 +73,16 @@ export default function LoginScreen() {
         />
         <FontAwesome5 name="lock" size={27} color="#9A9FA7" />
       </View>
-
-      <CustomButtonWoBorder
-        text="Mot de passe oublié ?"
-        onPress={onForgotPasswordPressed}
-      />
+      <View style={{ marginVertical: 20 }}>
+        <CustomButtonWoBorder
+          text="Mot de passe oublié ?"
+          onPress={onForgotPasswordPressed}
+        />
+      </View>
       <CustomButton text="Se connecter" onPress={onLoginPressed} />
       <View style={styles.signup}>
         <Text>Pas encore inscrit ?</Text>
-        <CustomButtonWoBorder text="S'inscrire" onPress={onSignUpPressed} />
+        <CustomButtonWoBorder text=" S'inscrire" onPress={onSignUpPressed} />
       </View>
     </View>
   );
@@ -114,6 +115,7 @@ const styles = StyleSheet.create({
   signup: {
     flexDirection: "row",
     alignItems: "center",
+    marginTop: 30,
   },
   eyeBtn: {
     position: "absolute",

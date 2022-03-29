@@ -15,13 +15,7 @@ import { RFPercentage } from "react-native-responsive-fontsize";
 import EventComponent from "../components/EventComponent";
 import { EventInfo } from "../types/data";
 
-export default function NewsFeedScreen({ item }: { item: EventInfo }) {
-  const renderItem = ({ item }: any) => (
-    <View>
-      <Text>{item.title}</Text>
-    </View>
-  );
-
+export default function NewsFeedScreen() {
   return (
     <SafeAreaView>
       <View style={styles.container}>
