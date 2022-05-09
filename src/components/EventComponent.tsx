@@ -10,6 +10,7 @@ import React from "react";
 import { EventInfo } from "../types/data";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import CustomButton from "./CustomButton";
+import { MaterialIcons } from "@expo/vector-icons";
 
 export default function EventComponent({ item }: { item: EventInfo }) {
   const onParticipatePressed = () => {
@@ -41,6 +42,7 @@ export default function EventComponent({ item }: { item: EventInfo }) {
           <Text style={{ color: "#172B4D", padding: 10 }} numberOfLines={9}>
             {item.description}
           </Text>
+          <MaterialIcons name="arrow-drop-down" size={25} color={"grey"} />
         </TouchableOpacity>
         <View style={styles.cardFooter}>
           <View style={styles.date}>

@@ -1,28 +1,28 @@
-import {
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-  StyleSheet,
-  FlatList,
-} from "react-native";
+import { SafeAreaView, Text, View, StyleSheet, FlatList } from "react-native";
 
-import React from "react";
+import React, { useState } from "react";
 import dataTestAccountProfile from "../dataTestAccountProfile.json";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import CustomButtonHalf from "../components/CustomButtonHalf";
+import LogOutComponent from "../components/LogOutComponent";
+import AccountEdit from "./AccountEdit";
+import NewPasswordScreen from "./NewPasswordScreen";
 
 export default function AccountScreen() {
+  const [isModifyInfoVisible, setModifyInfoVisibility] = useState(false);
+  const [isNewPasswordVisible, setNewPasswordVisibility] = useState(false);
+
+  if (isModifyInfoVisible) {
+    return <AccountEdit />;
+  }
+
+  if (isNewPasswordVisible) {
+    return <NewPasswordScreen />;
+  }
+
   const onDowloadPressed = () => {
     console.log("Download");
-  };
-  const onChangePasswordPressed = () => {
-    console.log("Change Password");
-  };
-
-  const onEditInfoPresse = () => {
-    console.log("Edit Info");
   };
 
   const renderItem = ({ item }: any) => (
@@ -41,13 +41,11 @@ export default function AccountScreen() {
       <View style={styles.container}>
         <View style={styles.nameFilter}>
           <Text style={styles.title}>Guillaume BODIN</Text>
-          <TouchableOpacity style={styles.btnAccount}>
-            <Ionicons name="person-outline" size={25} color="#172B4D" />
-          </TouchableOpacity>
+          <LogOutComponent />
         </View>
-        <Text style={styles.statusUpdate}>
+        {/* <Text style={styles.statusUpdate}>
           Votre dernière activité remonte au 10/02/2022
-        </Text>
+        </Text> */}
       </View>
       <View style={{ alignItems: "center" }}>
         <View style={styles.card}>
@@ -76,11 +74,13 @@ export default function AccountScreen() {
           <View style={styles.btnInfo}>
             <CustomButtonHalf
               text="Changer de mot de passe"
-              onPress={onChangePasswordPressed}
+              onPress={() => setNewPasswordVisibility(true)}
             />
             <CustomButtonHalf
               text="Modifier les informations"
-              onPress={onEditInfoPresse}
+              onPress={() => {
+                setModifyInfoVisibility(true);
+              }}
             />
           </View>
         </View>
@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
   },
   nameFilter: {
     width: "85%",
+    paddingBottom: 20,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
     width: "85%",
     borderRadius: 13,
     shadowColor: "black",
-    elevation: 10,
+    elevation: 4,
   },
   infoContainer: {
     padding: 10,

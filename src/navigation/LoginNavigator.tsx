@@ -4,10 +4,12 @@ import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import NewPasswordScreen from "../screens/NewPasswordScreen";
 import React from "react";
 import LoginScreen from "../screens/LoginScreen";
+import ModifyInfo from "../screens/AccountEdit";
+import ChangePassword from "../screens/ChangePassword";
 
 export type AuthStackParamList = {
   Login: undefined;
-  NewPassword: undefined;
+  ChangePassword: undefined;
   SignUp: undefined;
   ForgotPassword: undefined;
   Root: undefined;
@@ -18,7 +20,7 @@ export function LoginNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
+      <Stack.Screen name="ChangePassword" component={ChangePassword} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
     </Stack.Navigator>

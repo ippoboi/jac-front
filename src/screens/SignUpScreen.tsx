@@ -4,23 +4,17 @@ import {
   View,
   Image,
   StyleSheet,
-  TextInput,
-  TouchableOpacity,
   useWindowDimensions,
-  ColorPropType,
 } from "react-native";
 import { Ionicons, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CustomButton from "../components/CustomButton";
 import CustomTextInput from "../components/CustomTextInput";
 import CustomButtonWoBorder from "../components/CustomButtonWoBorder";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "../navigation/LoginNavigator";
-import {
-  NavigationContainerRefContext,
-  useNavigation,
-} from "@react-navigation/native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
+import { AuthContext, useAuth } from "../context/AuthContext";
 
 type authScreenNavigationType = NativeStackNavigationProp<
   AuthStackParamList,
@@ -29,15 +23,17 @@ type authScreenNavigationType = NativeStackNavigationProp<
 
 export default function SignUpScreen() {
   const [firstName, setFirstName] = useState("");
-  const [surName, setSurName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { register } = useContext(AuthContext);
 
   const { height } = useWindowDimensions();
   const navigation = useNavigation<authScreenNavigationType>();
 
   const onSignInPressed = () => {
-    navigation.navigate("Login");
+    register(firstName, lastName, email, password);
   };
   const onLoginPressed = () => {
     navigation.navigate("Login");
@@ -74,8 +70,8 @@ export default function SignUpScreen() {
       <View style={styles.emailContainer}>
         <CustomTextInput
           placeholder="Nom"
-          value={surName}
-          onChangeText={(surName) => setSurName(surName)}
+          value={lastName}
+          onChangeText={(surName) => setLastName(surName)}
         />
         <Ionicons name="person" size={27} color="#9A9FA7" />
       </View>

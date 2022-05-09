@@ -5,14 +5,13 @@ import {
   Image,
   StyleSheet,
   useWindowDimensions,
-  SafeAreaView,
 } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import React, { useState } from "react";
 import CustomButton from "../components/CustomButton";
 import CustomTextInput from "../components/CustomTextInput";
 
-export default function NewPasswordScreen() {
+export default function ChangePassword() {
   const [newPassword, setNewPassword] = useState("");
 
   const { height } = useWindowDimensions();
@@ -22,7 +21,7 @@ export default function NewPasswordScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar style="auto" />
       <Image
         style={[styles.logo, { height: height * 0.3 }]}
@@ -46,12 +45,13 @@ export default function NewPasswordScreen() {
         text="Réinitialiser mon mot de passe"
         onPress={onResetPasswordPressed}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     padding: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     width: "80%",
     marginLeft: "-10%",
     marginBottom: "7%",
-    fontSize: 27,
+    fontSize: 30,
     fontWeight: "bold",
   },
   emailContainer: {

@@ -24,15 +24,6 @@ if (
 
 export default function faqComponent({ text, paragraph }: Props) {
   const [isOpen, setOpen] = useState(false);
-  const FaqAnimation = () => {
-    LayoutAnimation.configureNext(
-      LayoutAnimation.create(
-        500,
-        LayoutAnimation.Types.easeInEaseOut,
-        LayoutAnimation.Properties.scaleX
-      )
-    );
-  };
 
   if (isOpen) {
     return (

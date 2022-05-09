@@ -30,6 +30,8 @@ export default function LoginScreen() {
   const navigation = useNavigation<authScreenNavigationType>();
   const { login } = useAuth();
 
+  const [message, setMessage] = useState("");
+
   const onSignUpPressed = () => {
     navigation.navigate("SignUp");
   };
@@ -38,8 +40,8 @@ export default function LoginScreen() {
     navigation.navigate("ForgotPassword");
   };
 
-  const onLoginPressed = () => {
-    login();
+  const onLoginPressed = async () => {
+    await login(email, password);
   };
 
   return (

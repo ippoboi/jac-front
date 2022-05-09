@@ -39,6 +39,7 @@ export function BottomTabNavigator() {
           tabBarIcon: ({ size, color }) => (
             <Ionicons name="person-outline" size={size} color={color} />
           ),
+          tabBarBadge: "!",
         }}
       />
       <BottomTab.Screen
