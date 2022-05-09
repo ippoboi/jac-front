@@ -28,14 +28,16 @@ export default function AuthProvider({ children }: any) {
     password: string
   ) => {
     axios
-      .post(REGISTER_URL, {
-        firstName,
-        lastName,
-        email,
-        password,
-      })
+      .post(
+        REGISTER_URL,
+        JSON.stringify({ firstName, lastName, email, password }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      )
       .then((res) => {
-        let userInfo = res.data;
+        let userInfo = JSON.stringify(res.data);
         console.log(userInfo);
       })
       .catch((e) => console.log(e));

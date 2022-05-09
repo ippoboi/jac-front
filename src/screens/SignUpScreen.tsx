@@ -27,13 +27,14 @@ export default function SignUpScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { register } = useContext(AuthContext);
+  const { register } = useAuth();
 
   const { height } = useWindowDimensions();
   const navigation = useNavigation<authScreenNavigationType>();
 
-  const onSignInPressed = () => {
-    register(firstName, lastName, email, password);
+  const onSignInPressed = async () => {
+    navigation.navigate("Login");
+    await register(firstName, lastName, email, password);
   };
   const onLoginPressed = () => {
     navigation.navigate("Login");
