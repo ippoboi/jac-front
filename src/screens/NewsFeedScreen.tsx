@@ -17,11 +17,19 @@ import { EventInfo } from "../types/data";
 import { useAuth } from "../context/AuthContext";
 import axios from "../data/axios";
 import CustomButton from "../components/CustomButton";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { BottomStackParamList } from "../navigation/BottomTabNav";
 const GET_EVENT_URL = "event";
-let i = 1;
+
+type bottomScreenNavigationType = NativeStackNavigationProp<
+  BottomStackParamList,
+  "Feed"
+>;
 
 export default function NewsFeedScreen() {
   const { userInfos } = useAuth();
+  const navigation = useNavigation<bottomScreenNavigationType>();
   const [eventInfo, setEventInfo] = useState();
   const [firstName, setFirstName] = useState(userInfos?.firstName);
 
@@ -36,6 +44,10 @@ export default function NewsFeedScreen() {
         console.log(e);
       });
   }
+
+  const onCreateEventPressed = () => {
+    navigation.navigate("EventCreate");
+  };
 
   useEffect(() => {
     updateEvent();
@@ -56,7 +68,10 @@ export default function NewsFeedScreen() {
         />
         {userInfos?.role[0].roleLabel === "admin" && (
           <View style={{ width: "90%", left: 18, paddingVertical: 10 }}>
-            <CustomButton text="Crée Évenement" onPress={() => {}} />
+            <CustomButton
+              text="Crée Évenement"
+              onPress={onCreateEventPressed}
+            />
           </View>
         )}
         <View style={styles.infoContainer}>

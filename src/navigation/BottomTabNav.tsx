@@ -9,6 +9,7 @@ export type BottomStackParamList = {
   Feed: undefined;
   Account: undefined;
   Faq: undefined;
+  EventCreate: undefined;
   AccountEdit: undefined;
   ChangePassword: undefined;
 };
