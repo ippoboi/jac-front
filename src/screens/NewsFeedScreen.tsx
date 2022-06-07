@@ -8,16 +8,38 @@ import {
 } from "react-native";
 
 import dataTest from "../dataTestFeed.json";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Feather } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import EventComponent from "../components/EventComponent";
 import { EventInfo } from "../types/data";
 import { useAuth } from "../context/AuthContext";
+import axios from "../data/axios";
+const GET_EVENT_URL = "event";
+let i = 1;
 
 export default function NewsFeedScreen() {
   const { userInfos } = useAuth();
+  const [eventInfo, setEventInfo] = useState(null);
+
+  async function getEvent() {
+    await axios
+      .get(GET_EVENT_URL, {})
+      .then((res) => {
+        setEventInfo(res.data);
+        console.log(eventInfo);
+        return eventInfo;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
+  useEffect(() => {
+    getEvent();
+    console.log(eventInfo);
+  }, []);
 
   const [firstName, setFirstName] = useState(userInfos?.firstName);
 
@@ -36,7 +58,7 @@ export default function NewsFeedScreen() {
         />
         <View style={styles.infoContainer}>
           <FlatList
-            data={dataTest as EventInfo[]}
+            data={eventInfo}
             renderItem={EventComponent}
             keyExtractor={(item) => item.id}
             style={{ marginBottom: 290, width: "93%" }}

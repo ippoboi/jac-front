@@ -98,13 +98,12 @@ export default function AuthProvider({ children }: any) {
       });
   }
 
-  // prettier-ignore
   async function logout() {
     const token = await retrieveToken();
     await axios
       .post(LOGOUT_URL, token, {
         headers: {
-          "Authorization": "Bearer " + token,
+          Authorization: "Bearer " + token,
         },
       })
       .then((res) => {

@@ -1,26 +1,15 @@
-import {
-  SafeAreaView,
-  Text,
-  View,
-  StyleSheet,
-  FlatList,
-  VirtualizedList,
-} from "react-native";
+import { SafeAreaView, Text, View, StyleSheet } from "react-native";
 
 import React, { useState } from "react";
-import dataTestAccountProfile from "../dataTestAccountProfile.json";
+
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import CustomButtonHalf from "../components/CustomButtonHalf";
-import LogOutComponent from "../components/LogOutComponent";
-import AccountEdit from "./AccountEdit";
 import NewPasswordScreen from "./NewPasswordScreen";
 import { useAuth } from "../context/AuthContext";
 import LogOutAreYouSureModal from "../components/LogOutAreYouSureModal";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { AuthStackParamList } from "../navigation/LoginNavigator";
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { BottomStackParamList } from "../navigation/BottomTabNav";
 
 type bottomScreenNavigationType = NativeStackNavigationProp<

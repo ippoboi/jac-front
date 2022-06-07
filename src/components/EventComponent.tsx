@@ -1,9 +1,11 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { EventInfo } from "../types/data";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import CustomButton from "./CustomButton";
 import { MaterialIcons } from "@expo/vector-icons";
+import axios from "../data/axios";
+const GET_EVENT_URL = "event";
 
 export default function EventComponent({ item }: { item: EventInfo }) {
   const onParticipatePressed = () => {
@@ -33,7 +35,7 @@ export default function EventComponent({ item }: { item: EventInfo }) {
         </View>
         <TouchableOpacity activeOpacity={0.8}>
           <Text style={{ color: "#172B4D", padding: 10 }} numberOfLines={9}>
-            {item.description}
+            {item.description.replace(/\\n/g, "\n")}
           </Text>
           <MaterialIcons name="arrow-drop-down" size={25} color={"grey"} />
         </TouchableOpacity>
@@ -42,7 +44,9 @@ export default function EventComponent({ item }: { item: EventInfo }) {
             <Text style={{ fontSize: 20, fontWeight: "700", color: "#172B4D" }}>
               {item.date}
             </Text>
-            <Text style={{ fontSize: 12, color: "#7C818F" }}>{item.hours}</Text>
+            <Text style={{ fontSize: 12, color: "#7C818F" }}>
+              {item.startHour} - {item.endHour}
+            </Text>
           </View>
           <View style={{ width: "50%" }}>
             <CustomButton text="Y participer" onPress={onParticipatePressed} />
