@@ -8,19 +8,24 @@ import {
 } from "react-native";
 
 import dataTest from "../dataTestFeed.json";
-import React from "react";
+import React, { useState } from "react";
 import { Feather } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import EventComponent from "../components/EventComponent";
 import { EventInfo } from "../types/data";
+import { useAuth } from "../context/AuthContext";
 
 export default function NewsFeedScreen() {
+  const { userInfos } = useAuth();
+
+  const [firstName, setFirstName] = useState(userInfos?.firstName);
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.nameFilter}>
-          <Text style={styles.title}>Bonjour Guillaume</Text>
+          <Text style={styles.title}>Bonjour {firstName}</Text>
           <TouchableOpacity style={styles.btnFilter}>
             <Feather name="filter" size={25} color="#172B4D" />
           </TouchableOpacity>

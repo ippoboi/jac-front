@@ -1,4 +1,11 @@
-import { SafeAreaView, Text, View, StyleSheet, FlatList } from "react-native";
+import {
+  SafeAreaView,
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  VirtualizedList,
+} from "react-native";
 
 import React, { useState } from "react";
 import dataTestAccountProfile from "../dataTestAccountProfile.json";
@@ -8,13 +15,35 @@ import CustomButtonHalf from "../components/CustomButtonHalf";
 import LogOutComponent from "../components/LogOutComponent";
 import AccountEdit from "./AccountEdit";
 import NewPasswordScreen from "./NewPasswordScreen";
+import { useAuth } from "../context/AuthContext";
+import LogOutAreYouSureModal from "../components/LogOutAreYouSureModal";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { AuthStackParamList } from "../navigation/LoginNavigator";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { BottomStackParamList } from "../navigation/BottomTabNav";
+
+type bottomScreenNavigationType = NativeStackNavigationProp<
+  BottomStackParamList,
+  "Account"
+>;
 
 export default function AccountScreen() {
   const [isModifyInfoVisible, setModifyInfoVisibility] = useState(false);
   const [isNewPasswordVisible, setNewPasswordVisibility] = useState(false);
+  const navigation = useNavigation<bottomScreenNavigationType>();
+  const { userInfos } = useAuth();
+
+  const [firstName, setFirstName] = useState(userInfos?.firstName);
+  const [lastName, setlastName] = useState(userInfos?.lastName);
+  const [age, setAge] = useState(userInfos?.age);
+  const [email, setEmail] = useState(userInfos?.email);
+  const [job, setJob] = useState(userInfos?.job);
+  const [phone, setPhone] = useState(userInfos?.phone);
 
   if (isModifyInfoVisible) {
-    return <AccountEdit />;
+    // navigation.navigate("AccountEdit");
+    console.log("Edit");
   }
 
   if (isNewPasswordVisible) {
@@ -25,27 +54,15 @@ export default function AccountScreen() {
     console.log("Download");
   };
 
-  const renderItem = ({ item }: any) => (
-    <View>
-      <Text>{"Nom : " + item.surname}</Text>
-      <Text>{"Prénom : " + item.firstname}</Text>
-      <Text>{"Age : " + item.age}</Text>
-      <Text>{"Tel : " + item.phone_number}</Text>
-      <Text>{"Mail : " + item.mail}</Text>
-      <Text>{"Activité : " + item.job}</Text>
-    </View>
-  );
-
   return (
     <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.nameFilter}>
-          <Text style={styles.title}>Guillaume BODIN</Text>
-          <LogOutComponent />
+          <Text style={styles.title}>
+            {firstName} {lastName}
+          </Text>
+          <LogOutAreYouSureModal />
         </View>
-        {/* <Text style={styles.statusUpdate}>
-          Votre dernière activité remonte au 10/02/2022
-        </Text> */}
       </View>
       <View style={{ alignItems: "center" }}>
         <View style={styles.card}>
@@ -65,11 +82,12 @@ export default function AccountScreen() {
             </View>
           </View>
           <View style={styles.infoContainer}>
-            <FlatList
-              data={dataTestAccountProfile}
-              renderItem={renderItem}
-              keyExtractor={(item) => item.id}
-            />
+            <Text>{"Nom : " + lastName}</Text>
+            <Text>{"Prénom : " + firstName}</Text>
+            <Text>{"Age : " + age}</Text>
+            <Text>{"Tel : " + phone}</Text>
+            <Text>{"Mail : " + email}</Text>
+            <Text>{"Activité : " + job}</Text>
           </View>
           <View style={styles.btnInfo}>
             <CustomButtonHalf

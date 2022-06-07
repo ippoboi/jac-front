@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacityBase,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { EventInfo } from "../types/data";
 import { RFPercentage } from "react-native-responsive-fontsize";

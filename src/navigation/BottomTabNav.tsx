@@ -5,7 +5,14 @@ import AccountScreen from "../screens/AccountScreen";
 import FaqScreen from "../screens/FaqScreen";
 import NewsFeedScreen from "../screens/NewsFeedScreen";
 
-const BottomTab = createBottomTabNavigator();
+export type BottomStackParamList = {
+  Feed: undefined;
+  Account: undefined;
+  Faq: undefined;
+  AccountEdit: undefined;
+};
+
+const BottomTab = createBottomTabNavigator<BottomStackParamList>();
 export function BottomTabNavigator() {
   return (
     <BottomTab.Navigator

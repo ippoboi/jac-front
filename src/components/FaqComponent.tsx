@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Platform,
   UIManager,
-  LayoutAnimation,
 } from "react-native";
 
 interface Props {

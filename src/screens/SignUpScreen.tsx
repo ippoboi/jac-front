@@ -5,16 +5,18 @@ import {
   Image,
   StyleSheet,
   useWindowDimensions,
+  SafeAreaView,
+  TextInput,
 } from "react-native";
 import { Ionicons, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import CustomButton from "../components/CustomButton";
 import CustomTextInput from "../components/CustomTextInput";
 import CustomButtonWoBorder from "../components/CustomButtonWoBorder";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "../navigation/LoginNavigator";
 import { useNavigation } from "@react-navigation/native";
-import { AuthContext, useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 
 type authScreenNavigationType = NativeStackNavigationProp<
   AuthStackParamList,
@@ -32,7 +34,7 @@ export default function SignUpScreen() {
   const { height } = useWindowDimensions();
   const navigation = useNavigation<authScreenNavigationType>();
 
-  const onSignInPressed = async () => {
+  const onSignUpPressed = async () => {
     navigation.navigate("Login");
     await register(firstName, lastName, email, password);
   };
@@ -50,8 +52,7 @@ export default function SignUpScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
+    <SafeAreaView style={styles.container}>
       <Image
         style={[styles.logo, { height: height * 0.3 }]}
         source={require("../../assets/logo.png")}
@@ -82,6 +83,7 @@ export default function SignUpScreen() {
           placeholder="Adresse mail"
           value={email}
           onChangeText={(email) => setEmail(email)}
+          input={"email"}
         />
         <MaterialIcons name="alternate-email" size={27} color="#9A9FA7" />
       </View>
@@ -111,12 +113,12 @@ export default function SignUpScreen() {
         </Text>
       </Text>
 
-      <CustomButton text="S'inscrire" onPress={onSignInPressed} />
+      <CustomButton text="S'inscrire" onPress={onSignUpPressed} />
       <View style={styles.signup}>
         <Text>Déjà inscrit ?</Text>
         <CustomButtonWoBorder text=" Se connecter" onPress={onLoginPressed} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 

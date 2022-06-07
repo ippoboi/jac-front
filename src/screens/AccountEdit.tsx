@@ -15,7 +15,7 @@ export default function AccountEdit() {
   const [isModifyInfoVisible, setModifyInfoVisibility] = useState(true);
 
   if (!isModifyInfoVisible) {
-    return <AccountScreen />;
+    // return <AccountScreen />;
   }
 
   return (

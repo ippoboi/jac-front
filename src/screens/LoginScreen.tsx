@@ -4,7 +4,6 @@ import {
   View,
   Image,
   StyleSheet,
-  TextInput,
   TouchableOpacity,
   useWindowDimensions,
 } from "react-native";
@@ -59,11 +58,12 @@ export default function LoginScreen() {
           placeholder="Adresse mail"
           value={email}
           onChangeText={(email) => setEmail(email)}
+          input={"email"}
         />
         <MaterialIcons name="alternate-email" size={27} color="#9A9FA7" />
       </View>
 
-      <View style={styles.emailContainer}>
+      <View style={styles.passwordContainer}>
         <TouchableOpacity style={styles.eyeBtn}>
           <Entypo name="eye-with-line" size={26} color="#9A9FA7" />
         </TouchableOpacity>
@@ -110,6 +110,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   emailContainer: {
+    flexDirection: "row-reverse",
+    paddingBottom: 10,
+    alignItems: "center",
+  },
+  passwordContainer: {
     flexDirection: "row-reverse",
     paddingBottom: 10,
     alignItems: "center",

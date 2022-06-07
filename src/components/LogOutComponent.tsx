@@ -1,9 +1,13 @@
-import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { Entypo, Ionicons } from "@expo/vector-icons";
+import { useAuth } from "../context/AuthContext";
+import LogOutAreYouSureModal from "./LogOutAreYouSureModal";
 
 export default function LogOutComponent() {
   const [isModalVisible, setVisibility] = useState(false);
+
+  const { logout } = useAuth();
 
   if (!isModalVisible) {
     return (
@@ -24,13 +28,15 @@ export default function LogOutComponent() {
           <Entypo name="cross" size={25} color="black" />
         </TouchableOpacity>
         <View style={styles.textContainer}>
-          <TouchableOpacity>
+          {/* <TouchableOpacity>
             <Text style={styles.text}>Options</Text>
           </TouchableOpacity>
-          <View style={styles.line}></View>
-          <TouchableOpacity>
-            <Text style={styles.text}>Déconnexion</Text>
-          </TouchableOpacity>
+          <View style={styles.line}></View> */}
+          <View style={styles.btnFix}>
+            <TouchableOpacity onPress={() => LogOutAreYouSureModal()}>
+              <Text style={styles.text}>Déconnexion</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -72,6 +78,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "#DCDDE0",
     borderBottomWidth: 1,
   },
+  btnFix: {},
   text: {
     fontWeight: "bold",
     fontSize: 23,
