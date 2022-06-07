@@ -16,19 +16,20 @@ import EventComponent from "../components/EventComponent";
 import { EventInfo } from "../types/data";
 import { useAuth } from "../context/AuthContext";
 import axios from "../data/axios";
+import CustomButton from "../components/CustomButton";
 const GET_EVENT_URL = "event";
 let i = 1;
 
 export default function NewsFeedScreen() {
   const { userInfos } = useAuth();
-  const [eventInfo, setEventInfo] = useState(null);
+  const [eventInfo, setEventInfo] = useState();
+  const [firstName, setFirstName] = useState(userInfos?.firstName);
 
-  async function getEvent() {
+  async function updateEvent() {
     await axios
       .get(GET_EVENT_URL, {})
       .then((res) => {
         setEventInfo(res.data);
-        console.log(eventInfo);
         return eventInfo;
       })
       .catch((e) => {
@@ -37,11 +38,8 @@ export default function NewsFeedScreen() {
   }
 
   useEffect(() => {
-    getEvent();
-    console.log(eventInfo);
+    updateEvent();
   }, []);
-
-  const [firstName, setFirstName] = useState(userInfos?.firstName);
 
   return (
     <SafeAreaView>
@@ -56,12 +54,17 @@ export default function NewsFeedScreen() {
           style={styles.searchbar}
           placeholder="Rechercher un événement..."
         />
+        {userInfos?.role[0].roleLabel === "admin" && (
+          <View style={{ width: "90%", left: 18, paddingVertical: 10 }}>
+            <CustomButton text="Crée Évenement" onPress={() => {}} />
+          </View>
+        )}
         <View style={styles.infoContainer}>
           <FlatList
             data={eventInfo}
             renderItem={EventComponent}
             keyExtractor={(item) => item.id}
-            style={{ marginBottom: 290, width: "93%" }}
+            style={{ marginBottom: 500, width: "93%" }}
           />
         </View>
       </View>

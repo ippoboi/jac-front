@@ -1,10 +1,33 @@
 import { SafeAreaView, Text, View, StyleSheet, ScrollView } from "react-native";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FaqData from "../faqdata.json";
 import FaqComponent from "../components/FaqComponent";
+import axios from "../data/axios";
+
+const GET_FAQ_URL = "question";
 
 export default function FaqScreen() {
+  const [faqList, setFaqList] = useState(null);
+
+  async function updateFaqList() {
+    await axios
+      .get("question", {})
+      .then((res) => {
+        setFaqList(res.data);
+        console.log(faqList);
+        return faqList;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
+  useEffect(() => {
+    updateFaqList();
+    console.log(faqList);
+  }, []);
+
   return (
     <SafeAreaView>
       <View style={styles.container}>

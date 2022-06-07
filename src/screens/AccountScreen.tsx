@@ -18,8 +18,6 @@ type bottomScreenNavigationType = NativeStackNavigationProp<
 >;
 
 export default function AccountScreen() {
-  const [isModifyInfoVisible, setModifyInfoVisibility] = useState(false);
-  const [isNewPasswordVisible, setNewPasswordVisibility] = useState(false);
   const navigation = useNavigation<bottomScreenNavigationType>();
   const { userInfos } = useAuth();
 
@@ -30,14 +28,13 @@ export default function AccountScreen() {
   const [job, setJob] = useState(userInfos?.job);
   const [phone, setPhone] = useState(userInfos?.phone);
 
-  if (isModifyInfoVisible) {
-    // navigation.navigate("AccountEdit");
-    console.log("Edit");
-  }
+  const onAccountEditPressed = () => {
+    navigation.navigate("AccountEdit");
+  };
 
-  if (isNewPasswordVisible) {
-    return <NewPasswordScreen />;
-  }
+  const onChangePasswordPressed = () => {
+    navigation.navigate("ChangePassword");
+  };
 
   const onDowloadPressed = () => {
     console.log("Download");
@@ -81,13 +78,11 @@ export default function AccountScreen() {
           <View style={styles.btnInfo}>
             <CustomButtonHalf
               text="Changer de mot de passe"
-              onPress={() => setNewPasswordVisibility(true)}
+              onPress={onChangePasswordPressed}
             />
             <CustomButtonHalf
               text="Modifier les informations"
-              onPress={() => {
-                setModifyInfoVisibility(true);
-              }}
+              onPress={onAccountEditPressed}
             />
           </View>
         </View>

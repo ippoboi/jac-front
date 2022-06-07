@@ -5,7 +5,7 @@ export interface EventInfo {
   date: string;
   description: string;
   endHour: string;
-  id: string;
+  id: number;
   isActive: boolean;
   isOpen: boolean;
   placesNb: number;
@@ -14,3 +14,9 @@ export interface EventInfo {
 }
 
 export type Categories = "Formation" | "Maraudes" | "Donations" | "Entraide";
+
+export interface FaqInfo {
+  id: number;
+  title: string;
+  answer: string;
+}

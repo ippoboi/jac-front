@@ -5,19 +5,35 @@ import {
   Image,
   StyleSheet,
   useWindowDimensions,
+  Touchable,
+  Alert,
 } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import React, { useState } from "react";
 import CustomButton from "../components/CustomButton";
 import CustomTextInput from "../components/CustomTextInput";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { GlobalStackParamList } from "../navigation/GlobalNavigator";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
+
+type globalScreenNavigationType = NativeStackNavigationProp<
+  GlobalStackParamList,
+  "ChangePassword"
+>;
 
 export default function ChangePassword() {
   const [newPassword, setNewPassword] = useState("");
-
+  const navigation = useNavigation<globalScreenNavigationType>();
   const { height } = useWindowDimensions();
 
   const onResetPasswordPressed = () => {
-    console.warn("Reset Password");
+    navigation.navigate("BottomTabNavigator");
+    Alert.alert("", "Vous avez changé votre mot de passe !");
+  };
+
+  const onCancelPressed = () => {
+    navigation.navigate("BottomTabNavigator");
   };
 
   return (
@@ -34,6 +50,7 @@ export default function ChangePassword() {
         <CustomTextInput
           placeholder="Nouveau mot de passe"
           value={newPassword}
+          isPassword={true}
           onChangeText={(newPassword) => setNewPassword(newPassword)}
         />
         <FontAwesome5 name="lock" size={27} color="#9A9FA7" />
@@ -45,6 +62,9 @@ export default function ChangePassword() {
         text="Réinitialiser mon mot de passe"
         onPress={onResetPasswordPressed}
       />
+      <TouchableOpacity style={styles.cancelbtn} onPress={onCancelPressed}>
+        <Text style={styles.canceltext}>Annuler</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -77,5 +97,12 @@ const styles = StyleSheet.create({
     color: "#9A9FA7",
     marginLeft: "1.6%",
     marginBottom: "10%",
+  },
+  cancelbtn: {},
+  canceltext: {
+    color: "#0065FF",
+    padding: 20,
+    fontWeight: "bold",
+    fontSize: 20,
   },
 });

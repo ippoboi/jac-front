@@ -90,7 +90,7 @@ export default function AuthProvider({ children }: any) {
         },
       })
       .then((res) => {
-        console.log(res.data.id);
+        // console.log(res.data.id);
         getUserInfos(res.data.id);
       })
       .catch((e) => {

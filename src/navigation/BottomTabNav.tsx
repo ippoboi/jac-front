@@ -10,6 +10,7 @@ export type BottomStackParamList = {
   Account: undefined;
   Faq: undefined;
   AccountEdit: undefined;
+  ChangePassword: undefined;
 };
 
 const BottomTab = createBottomTabNavigator<BottomStackParamList>();

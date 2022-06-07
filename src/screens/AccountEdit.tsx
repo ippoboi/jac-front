@@ -3,6 +3,7 @@ import {
   Text,
   SafeAreaView,
   StyleSheet,
+  Alert,
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
@@ -10,23 +11,32 @@ import ModifyInfoComp from "../components/ModifyInfoComp";
 import CustomButton from "../components/CustomButton";
 import AccountScreen from "./AccountScreen";
 import { Entypo } from "@expo/vector-icons";
+import { GlobalStackParamList } from "../navigation/GlobalNavigator";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
+
+type globalScreenNavigationType = NativeStackNavigationProp<
+  GlobalStackParamList,
+  "AccountEdit"
+>;
 
 export default function AccountEdit() {
-  const [isModifyInfoVisible, setModifyInfoVisibility] = useState(true);
+  const navigation = useNavigation<globalScreenNavigationType>();
 
-  if (!isModifyInfoVisible) {
-    // return <AccountScreen />;
-  }
+  const onQuitPress = () => {
+    navigation.navigate("BottomTabNavigator");
+    Alert.alert("", "Vos données ont été enregistées !");
+  };
+
+  const onCancelPress = () => {
+    navigation.navigate("BottomTabNavigator");
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.nameCross}>
         <Text style={styles.title}>Mes informations</Text>
-        <TouchableOpacity
-          onPress={() => {
-            setModifyInfoVisibility(false);
-          }}
-        >
+        <TouchableOpacity onPress={onCancelPress}>
           <Entypo name="cross" size={34} color="#172B4D" style={styles.cross} />
         </TouchableOpacity>
       </View>
@@ -40,9 +50,7 @@ export default function AccountEdit() {
       </View>
       <CustomButton
         text={"Enregistrer les modifications"}
-        onPress={() => {
-          setModifyInfoVisibility(false);
-        }}
+        onPress={onQuitPress}
       />
     </SafeAreaView>
   );
