@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { Entypo, Ionicons } from "@expo/vector-icons";
+import { Entypo, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function LogOutAreYouSureModal() {
   const [isModalVisible, setVisibility] = useState(false);
@@ -14,7 +14,7 @@ export default function LogOutAreYouSureModal() {
         style={styles.btnAccount}
         onPress={() => setVisibility(true)}
       >
-        <Ionicons name="person-outline" size={25} color="#172B4D" />
+        <MaterialCommunityIcons name="logout" size={25} color="#172B4D" />
       </TouchableOpacity>
     );
   } else {

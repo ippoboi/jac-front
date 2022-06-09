@@ -64,7 +64,7 @@ export default function NewsFeedScreen() {
         </View>
         <TextInput
           style={styles.searchbar}
-          placeholder="Rechercher un événement..."
+          placeholder="Rechercher un évènement..."
         />
         {userInfos?.role[0].roleLabel === "admin" && (
           <View style={{ width: "90%", left: 18, paddingVertical: 10 }}>
@@ -79,7 +79,7 @@ export default function NewsFeedScreen() {
             data={eventInfo}
             renderItem={EventComponent}
             keyExtractor={(item) => item.id}
-            style={{ marginBottom: 500, width: "93%" }}
+            style={{ marginBottom: 290, width: "93%" }}
           />
         </View>
       </View>

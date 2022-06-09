@@ -1,48 +1,32 @@
 import { Entypo } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
-  TextInput,
+  VirtualizedList,
   Text,
-  TouchableOpacity,
   Alert,
+  TouchableOpacity,
+  TextInput,
   StyleSheet,
 } from "react-native";
-
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "../components/CustomButton";
 import ModifyInfoComp from "../components/ModifyInfoComp";
-import axios from "../data/axios";
 import { GlobalStackParamList } from "../navigation/GlobalNavigator";
 
 type globalScreenNavigationType = NativeStackNavigationProp<
   GlobalStackParamList,
-  "EventCreate"
+  "FaqCreate"
 >;
 
-export default function EventCreate() {
+export default function FaqCreate() {
   const navigation = useNavigation<globalScreenNavigationType>();
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
-  const [hour, setHour] = useState("");
-  const [places, setPlaces] = useState("");
-  const [description, setDescription] = useState("");
 
   const onQuitPress = () => {
     navigation.navigate("BottomTabNavigator");
-    Alert.alert("", "Vos événement a été créé avec succés !");
-  };
-
-  const createEvent = async (
-    title: string,
-    date: string,
-    hour: string,
-    places: string,
-    description: string
-  ) => {
-    await axios.post("event/title", {});
+    Alert.alert("", "Votre question a été rajouté avec succès !");
   };
 
   const onCancelPress = () => {
@@ -52,52 +36,28 @@ export default function EventCreate() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.nameCross}>
-        <Text style={styles.title}>Nouvel Evenement</Text>
+        <Text style={styles.title}>Nouvelle Question</Text>
         <TouchableOpacity onPress={onCancelPress}>
           <Entypo name="cross" size={34} color="#172B4D" style={styles.cross} />
         </TouchableOpacity>
       </View>
-      <View style={{ marginBottom: 40 }}>
-        <ModifyInfoComp
-          prop={"Titre"}
-          value={title}
-          onChangeText={(title) => setTitle(title)}
-        />
-        <ModifyInfoComp
-          prop={"Date"}
-          value={date}
-          onChangeText={(date) => setDate(date)}
-        />
-        <ModifyInfoComp
-          prop={"Heure"}
-          value={hour}
-          onChangeText={(hour) => setHour(hour)}
-        />
-        <ModifyInfoComp
-          prop={"Places"}
-          value={places}
-          onChangeText={(places) => setPlaces(places)}
-        />
-        <Text style={styles.prop}>Description</Text>
+      <View style={{ marginBottom: 40, width: "90%" }}>
+        <Text style={styles.prop}>Question</Text>
         <TextInput
           style={styles.textInput}
-          value={description}
-          onChangeText={(description) => setDescription(description)}
-          placeholder={"Entrez la Description"}
-          numberOfLines={6}
+          placeholder={"Entrez la Question"}
+          numberOfLines={2}
           multiline={true}
         />
-        <Text style={styles.propDoc}>Documents</Text>
-        <TouchableOpacity style={styles.btnAdd}>
-          <Text>Ajoutez des Documents</Text>
-        </TouchableOpacity>
-        <Text>1 - text.txt</Text>
-        <Text>2 - image.png</Text>
+        <Text style={styles.prop}>Réponse</Text>
+        <TextInput
+          style={styles.textInput}
+          placeholder={"Entrez la Réponse"}
+          numberOfLines={10}
+          multiline={true}
+        />
       </View>
-      <CustomButton
-        text={"Enregistrer les modifications"}
-        onPress={onQuitPress}
-      />
+      <CustomButton text={"Enregistrer la question"} onPress={onQuitPress} />
     </SafeAreaView>
   );
 }
@@ -128,12 +88,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 19,
     paddingTop: 20,
-  },
-  propDoc: {
-    color: "#444C6A",
-    fontWeight: "bold",
-    fontSize: 19,
-    paddingTop: 5,
   },
   textInput: {
     marginVertical: 20,

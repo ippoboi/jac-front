@@ -4,11 +4,22 @@ import React, { useEffect, useState } from "react";
 import FaqData from "../faqdata.json";
 import FaqComponent from "../components/FaqComponent";
 import axios from "../data/axios";
+import CustomButton from "../components/CustomButton";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { BottomStackParamList } from "../navigation/BottomTabNav";
+import { useAuth } from "../context/AuthContext";
 
 const GET_FAQ_URL = "question";
+type bottomScreenNavigationType = NativeStackNavigationProp<
+  BottomStackParamList,
+  "Faq"
+>;
 
 export default function FaqScreen() {
   const [faqList, setFaqList] = useState(null);
+  const { userInfos } = useAuth();
+  const navigation = useNavigation<bottomScreenNavigationType>();
 
   async function updateFaqList() {
     await axios
@@ -23,6 +34,10 @@ export default function FaqScreen() {
       });
   }
 
+  const onFaqCreatePressed = () => {
+    navigation.navigate("FaqCreate");
+  };
+
   useEffect(() => {
     updateFaqList();
     console.log(faqList);
@@ -33,6 +48,14 @@ export default function FaqScreen() {
       <View style={styles.container}>
         <Text style={styles.title}>Foire Aux Questions</Text>
       </View>
+      {userInfos?.role[0].roleLabel === "admin" && (
+        <View style={{ width: "90%", left: 35, paddingVertical: 10 }}>
+          <CustomButton
+            text="Ajoute une Question"
+            onPress={onFaqCreatePressed}
+          />
+        </View>
+      )}
       <ScrollView style={{ marginBottom: 67 }}>
         {FaqData.FaqObj.map((faqobj, index) => {
           return (

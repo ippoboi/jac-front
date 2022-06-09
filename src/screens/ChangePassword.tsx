@@ -5,14 +5,13 @@ import {
   Image,
   StyleSheet,
   useWindowDimensions,
-  Touchable,
+  TouchableOpacity,
   Alert,
 } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import React, { useState } from "react";
 import CustomButton from "../components/CustomButton";
 import CustomTextInput from "../components/CustomTextInput";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { GlobalStackParamList } from "../navigation/GlobalNavigator";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
@@ -33,7 +32,7 @@ export default function ChangePassword() {
   };
 
   const onCancelPressed = () => {
-    navigation.navigate("BottomTabNavigator");
+    navigation.navigate("AccountEdit");
   };
 
   return (

@@ -3,23 +3,28 @@ import React from "react";
 
 interface Types {
   prop: string;
-  field: string;
+  value: string;
+  onChangeText: (text: string) => void;
 }
 
-export default function ModifyInfoComp({ prop, field }: Types) {
+export default function ModifyInfoComp({ prop, value, onChangeText }: Types) {
   return (
     <View style={styles.lign}>
       <Text style={styles.prop}>{prop}</Text>
-      <TextInput style={styles.field}>{field}</TextInput>
+      <TextInput
+        style={styles.field}
+        placeholder={value}
+        value={value}
+        onChangeText={onChangeText}
+      ></TextInput>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   lign: {
-    marginLeft: 20,
     marginTop: 20,
-    width: "75%",
+    width: "95%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
