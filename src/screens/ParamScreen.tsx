@@ -8,16 +8,52 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import { useAuth } from "../context/AuthContext";
+import { BottomStackParamList } from "../navigation/BottomTabNav";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
+
+type bottomScreenNavigationType = NativeStackNavigationProp<
+  BottomStackParamList,
+  "Parameter"
+>;
 
 export default function ParamScreen() {
-  const { logout } = useAuth();
+  const { logout, userInfos } = useAuth();
+  const navigation = useNavigation<bottomScreenNavigationType>();
+
+  const onFaqPressed = () => {
+    navigation.navigate("Faq");
+  };
+
+  const onAdminMenu = () => {
+    navigation.navigate("AdminMenu");
+  };
 
   return (
     <SafeAreaView style={{ backgroundColor: "white", height: "100%" }}>
       <View style={styles.container}>
         <Text style={styles.title}>Paramètres</Text>
       </View>
-      <TouchableOpacity style={styles.btn} activeOpacity={0.4}>
+      {userInfos?.role[0].roleLabel === "admin" && (
+        <View>
+          <TouchableOpacity
+            style={styles.btn}
+            activeOpacity={0.4}
+            onPress={onAdminMenu}
+          >
+            <Ionicons name="person-outline" size={20} color="#172B4D" />
+            <Text style={{ fontSize: 19, marginLeft: 15 }}>
+              Menu Administrateur
+            </Text>
+          </TouchableOpacity>
+          <View style={styles.line}></View>
+        </View>
+      )}
+      <TouchableOpacity
+        style={styles.btn}
+        activeOpacity={0.4}
+        onPress={onFaqPressed}
+      >
         <FontAwesome5 name="question" size={20} color="#172B4D" />
         <Text style={{ fontSize: 19, marginLeft: 20 }}>
           Foire aux questions

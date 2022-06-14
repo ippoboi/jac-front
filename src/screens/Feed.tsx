@@ -6,16 +6,57 @@ import {
   TextInput,
   SafeAreaView,
   ScrollView,
+  Dimensions,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Shadow } from "react-native-shadow-2";
 
 import { Feather, Ionicons } from "@expo/vector-icons";
 import EventCardBigPicture from "../components/EventCardBigPicture";
 import CategoryBtn from "../components/CategoryBtn";
 import EventCardMedPicture from "../components/EventCardMedPicture";
+import { useAuth } from "../context/AuthContext";
+import { BottomStackParamList } from "../navigation/BottomTabNav";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
+const SCREEN_WIDTH = Dimensions.get("window").width;
+
+type bottomScreenNavigationType = NativeStackNavigationProp<
+  BottomStackParamList,
+  "Feed"
+>;
 
 export default function Feed() {
+  const navigation = useNavigation<bottomScreenNavigationType>();
+  const { userInfos } = useAuth();
+  let date = new Date().getDate();
+  const monthName = [
+    "janvier",
+    "février",
+    "mars",
+    "avril",
+    "mai",
+    "juin",
+    "juillet",
+    "août",
+    "septembre",
+    "octobre",
+    "novembre",
+    "décembre",
+  ];
+  let month = monthName[new Date().getMonth()];
+  let year = new Date().getFullYear();
+
+  const [firstName, setFirstName] = useState(userInfos?.firstName);
+
+  const onCreateEventPressed = () => {
+    navigation.navigate("EventCreate");
+  };
+
+  const onNotificationPressed = () => {
+    navigation.navigate("Notifications");
+  };
+
   return (
     <SafeAreaView style={{ backgroundColor: "white", height: "100%" }}>
       <View style={styles.blueObject}></View>
@@ -24,14 +65,17 @@ export default function Feed() {
         <View style={styles.TopBar}>
           <View>
             <Text style={{ fontSize: 15, color: "white" }}>
-              Mercredi 8 juin
+              {date} {month} {year}
             </Text>
             <Text style={{ fontSize: 20, color: "white", fontWeight: "700" }}>
-              Bonjour Guillaume !
+              Bonjour {firstName} !
             </Text>
           </View>
           <Shadow>
-            <TouchableOpacity style={styles.notificationbtn}>
+            <TouchableOpacity
+              style={styles.notificationbtn}
+              onPress={onNotificationPressed}
+            >
               <Feather name="bell" size={26} color="#172B4D" />
             </TouchableOpacity>
           </Shadow>
@@ -159,6 +203,7 @@ export default function Feed() {
         <TouchableOpacity
           style={{ position: "absolute", bottom: 20, left: 20 }}
           activeOpacity={0.5}
+          onPress={onCreateEventPressed}
         >
           <Text
             style={{

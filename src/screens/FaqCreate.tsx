@@ -30,7 +30,7 @@ export default function FaqCreate() {
   };
 
   const onCancelPress = () => {
-    navigation.navigate("BottomTabNavigator");
+    navigation.navigate("Faq");
   };
 
   return (

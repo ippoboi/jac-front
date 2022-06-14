@@ -21,12 +21,14 @@ export type BottomStackParamList = {
   YourEvents: undefined;
   Parameter: undefined;
   Profil: undefined;
-  Account: undefined;
   Faq: undefined;
+  UsersList: undefined;
   FaqCreate: undefined;
   EventCreate: undefined;
   AccountEdit: undefined;
   ChangePassword: undefined;
+  Notifications: undefined;
+  AdminMenu: undefined;
 };
 
 const BottomTab = createBottomTabNavigator<BottomStackParamList>();

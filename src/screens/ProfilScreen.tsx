@@ -6,7 +6,7 @@ import {
   Vibration,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 import { Shadow } from "react-native-shadow-2";
@@ -16,6 +16,7 @@ import EventCardBigPictureWoBookmark from "../components/EventCardBigPictureWoBo
 import { useNavigation } from "@react-navigation/native";
 import { BottomStackParamList } from "../navigation/BottomTabNav";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useAuth } from "../context/AuthContext";
 
 type bottomScreenNavigationType = NativeStackNavigationProp<
   BottomStackParamList,
@@ -24,6 +25,11 @@ type bottomScreenNavigationType = NativeStackNavigationProp<
 
 export default function ProfilScreen() {
   const navigation = useNavigation<bottomScreenNavigationType>();
+  const { userInfos } = useAuth();
+
+  const [firstName, setFirstName] = useState(userInfos?.firstName);
+  const [lastName, setlastName] = useState(userInfos?.lastName);
+  const [job, setJob] = useState(userInfos?.job);
 
   return (
     <SafeAreaView style={{ backgroundColor: "white", height: "100%" }}>
@@ -43,17 +49,28 @@ export default function ProfilScreen() {
             <View style={styles.profilpic}></View>
           </Shadow>
           <View style={styles.info}>
-            <Text style={{ fontSize: 20, fontWeight: "700", color: "#172b4d" }}>
-              Guillaume Bodin
-            </Text>
-            <Text style={{ fontSize: 15, color: "#777777" }}>Ingénieur</Text>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Ionicons name="location-sharp" size={20} color={"#394DFD"} />
-              <Text style={{ color: "#394DFD", fontWeight: "700" }}>
-                Paris, France
-              </Text>
-            </View>
             <View>
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontWeight: "700",
+                  color: "#172b4d",
+                  marginBottom: 6,
+                }}
+              >
+                {firstName} {lastName}
+              </Text>
+              <Text style={{ fontSize: 15, color: "#777777", marginBottom: 6 }}>
+                {job}
+              </Text>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Ionicons name="location-sharp" size={20} color={"#394DFD"} />
+                <Text style={{ color: "#394DFD", fontWeight: "700" }}>
+                  Paris, France
+                </Text>
+              </View>
+            </View>
+            <View style={{ width: 118 }}>
               <Text style={styles.validate}>Validé</Text>
             </View>
           </View>
@@ -160,7 +177,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     color: "white",
     fontWeight: "bold",
-    width: "41%",
+    width: "50%",
   },
   countercontainer: {
     flexDirection: "row",

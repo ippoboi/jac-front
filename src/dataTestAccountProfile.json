@@ -6,7 +6,21 @@
     "age": 65,
     "phone_number": "07 81 31 54 00",
     "mail": "guillaume-b@hotmail.com",
-    "job": "Professeur des écoles",
-    "last_connection": "10/02/2022"
+    "job": "Ingenieur",
+    "town": "Paris",
+    "country": "France",
+    "is_active": true
+  },
+  {
+    "id": "2",
+    "surname": "Courir",
+    "firstname": "Jerome",
+    "age": 65,
+    "phone_number": "07 81 31 54 00",
+    "mail": "jerome-c@hotmail.com",
+    "job": "Commerce",
+    "town": "Paris",
+    "country": "France",
+    "is_active": false
   }
 ]

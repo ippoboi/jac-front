@@ -13,6 +13,8 @@ import EventCardSmallPicturePassed from "../components/EventCardSmallPicturePass
 export default function YourEventsScreen() {
   return (
     <SafeAreaView style={{ backgroundColor: "white", height: "100%" }}>
+      <View style={styles.blueObject}></View>
+
       <View style={styles.container}>
         <Text style={styles.title}>Vos Évènements</Text>
         <ScrollView style={{ height: "83%" }}>
@@ -81,10 +83,18 @@ export default function YourEventsScreen() {
 }
 
 const styles = StyleSheet.create({
+  blueObject: {
+    width: "100%",
+    height: 70,
+    backgroundColor: "#0065ff",
+    position: "absolute",
+    borderBottomRightRadius: 30,
+    borderBottomLeftRadius: 30,
+  },
   container: { paddingTop: 20 },
   title: {
     fontSize: 30,
-    color: "#172B4D",
+    color: "white",
     fontWeight: "700",
     paddingLeft: 30,
     paddingBottom: 20,

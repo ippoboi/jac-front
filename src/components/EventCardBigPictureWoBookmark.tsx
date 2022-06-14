@@ -2,12 +2,29 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Shadow } from "react-native-shadow-2";
 import { Feather, FontAwesome, Ionicons } from "@expo/vector-icons";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { GlobalStackParamList } from "../navigation/GlobalNavigator";
+import { useNavigation } from "@react-navigation/native";
+
+type globalScreenNavigationType = NativeStackNavigationProp<
+  GlobalStackParamList,
+  "EventCardWoBM"
+>;
 
 export default function EventCardBigPicture() {
+  const navigation = useNavigation<globalScreenNavigationType>();
+  const onEventPressed = () => {
+    navigation.navigate("EventScreen");
+  };
+
   return (
     <View style={{ marginVertical: 15, paddingHorizontal: 30 }}>
       <Shadow offset={[0, 4]} startColor="#0001">
-        <TouchableOpacity style={styles.cardContainer} activeOpacity={0.9}>
+        <TouchableOpacity
+          style={styles.cardContainer}
+          activeOpacity={0.9}
+          onPress={onEventPressed}
+        >
           <View style={styles.topCard}>
             <Text style={styles.category}>Catégorie</Text>
           </View>

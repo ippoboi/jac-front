@@ -1,4 +1,11 @@
-import { SafeAreaView, Text, View, StyleSheet, ScrollView } from "react-native";
+import {
+  SafeAreaView,
+  Text,
+  View,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 
 import React, { useEffect, useState } from "react";
 import FaqData from "../faqdata.json";
@@ -9,6 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { BottomStackParamList } from "../navigation/BottomTabNav";
 import { useAuth } from "../context/AuthContext";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const GET_FAQ_URL = "question";
 type bottomScreenNavigationType = NativeStackNavigationProp<
@@ -34,6 +42,10 @@ export default function FaqScreen() {
       });
   }
 
+  const onBackPressed = () => {
+    navigation.navigate("Parameter");
+  };
+
   const onFaqCreatePressed = () => {
     navigation.navigate("FaqCreate");
   };
@@ -46,6 +58,9 @@ export default function FaqScreen() {
   return (
     <SafeAreaView>
       <View style={styles.container}>
+        <TouchableOpacity onPress={onBackPressed}>
+          <MaterialIcons name="arrow-back-ios" size={30} color={"#172B4D"} />
+        </TouchableOpacity>
         <Text style={styles.title}>Foire Aux Questions</Text>
       </View>
       {userInfos?.role[0].roleLabel === "admin" && (
@@ -56,7 +71,7 @@ export default function FaqScreen() {
           />
         </View>
       )}
-      <ScrollView style={{ marginBottom: 67 }}>
+      <ScrollView style={{ marginBottom: 130 }}>
         {FaqData.FaqObj.map((faqobj, index) => {
           return (
             <FaqComponent
@@ -75,12 +90,16 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 20,
     paddingBottom: 10,
+    marginLeft: 30,
+    marginBottom: 10,
     alignItems: "center",
+    justifyContent: "space-between",
+    flexDirection: "row",
   },
   title: {
     width: "85%",
-    fontSize: 30,
-    marginBottom: 10,
+    fontSize: 25,
+
     color: "#172B4D",
     fontWeight: "700",
     flexDirection: "row",

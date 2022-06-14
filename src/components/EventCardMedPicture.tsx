@@ -2,12 +2,29 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Shadow } from "react-native-shadow-2";
 import { Feather, FontAwesome, Ionicons } from "@expo/vector-icons";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { GlobalStackParamList } from "../navigation/GlobalNavigator";
+import { useNavigation } from "@react-navigation/native";
+
+type globalScreenNavigationType = NativeStackNavigationProp<
+  GlobalStackParamList,
+  "EventCardMed"
+>;
 
 export default function EventCardMedPicture() {
+  const navigation = useNavigation<globalScreenNavigationType>();
+  const onEventPressed = () => {
+    navigation.navigate("EventScreen");
+  };
+
   return (
     <View style={{ marginVertical: 15 }}>
       <Shadow offset={[0, 4]} startColor="#0001">
-        <TouchableOpacity style={styles.cardContainer} activeOpacity={0.9}>
+        <TouchableOpacity
+          style={styles.cardContainer}
+          activeOpacity={0.9}
+          onPress={onEventPressed}
+        >
           <View style={{ flexDirection: "row", height: "100%" }}>
             <View style={styles.leftPicture}>
               <View style={{ margin: 10 }}>
@@ -62,6 +79,83 @@ export default function EventCardMedPicture() {
               >
                 <Ionicons name="location-sharp" size={20} color={"#a2a2a2"} />
                 <Text style={styles.location}>Paris, France</Text>
+              </View>
+              <View
+                style={{
+                  // backgroundColor: "yellow",
+                  flexDirection: "row",
+                  marginTop: 20,
+                  alignItems: "center",
+                }}
+              >
+                <View
+                  style={{
+                    height: 24,
+                    width: 24,
+                    backgroundColor: "red",
+                    borderRadius: 20,
+                  }}
+                />
+                <View
+                  style={{
+                    height: 24,
+                    width: 24,
+                    backgroundColor: "#0065ff",
+                    borderRadius: 20,
+                    marginLeft: -14,
+                  }}
+                />
+                <View
+                  style={{
+                    height: 24,
+                    width: 24,
+                    backgroundColor: "yellow",
+                    borderRadius: 20,
+                    marginLeft: -14,
+                  }}
+                />
+                <View
+                  style={{
+                    height: 24,
+                    width: 24,
+                    backgroundColor: "green",
+                    borderRadius: 20,
+                    marginLeft: -14,
+                  }}
+                />
+                <View
+                  style={{
+                    height: 24,
+                    width: 24,
+                    backgroundColor: "#0065ff",
+                    borderRadius: 20,
+                    marginLeft: -14,
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "white",
+                      paddingTop: 4,
+                      paddingLeft: 4,
+                      fontSize: 12,
+                    }}
+                  >
+                    +5
+                  </Text>
+                </View>
+                <Text
+                  style={{
+                    fontSize: 10,
+                    backgroundColor: "#0065ff",
+                    marginLeft: 5,
+                    paddingVertical: 2,
+                    paddingHorizontal: 8,
+                    borderRadius: 5,
+                    color: "white",
+                  }}
+                >
+                  Amis intéressés
+                </Text>
               </View>
             </View>
           </View>

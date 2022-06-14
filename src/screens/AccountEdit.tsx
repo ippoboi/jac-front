@@ -18,6 +18,7 @@ import { GlobalStackParamList } from "../navigation/GlobalNavigator";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { Shadow } from "react-native-shadow-2";
+import { useAuth } from "../context/AuthContext";
 
 type globalScreenNavigationType = NativeStackNavigationProp<
   GlobalStackParamList,
@@ -25,18 +26,21 @@ type globalScreenNavigationType = NativeStackNavigationProp<
 >;
 
 export default function AccountEdit() {
-  const navigation = useNavigation<globalScreenNavigationType>();
-  const [lastName, setLastName] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [age, setAge] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [job, setJob] = useState("");
-  const [town, setTown] = useState("");
-  const [country, setCountry] = useState("");
-  const [bio, setBio] = useState("");
+  const { userInfos } = useAuth();
 
-  const onQuitPress = () => {
+  const navigation = useNavigation<globalScreenNavigationType>();
+
+  const [firstName, setFirstName] = useState(userInfos?.firstName);
+  const [lastName, setLastName] = useState(userInfos?.lastName);
+  const [age, setAge] = useState(userInfos?.age);
+  const [email, setEmail] = useState(userInfos?.email);
+  const [job, setJob] = useState(userInfos?.job);
+  const [phone, setPhone] = useState(userInfos?.phone);
+  const [town, setTown] = useState(userInfos?.town);
+  const [country, setCountry] = useState(userInfos?.country);
+  const [bio, setBio] = useState(userInfos?.bio);
+
+  const onSavePress = () => {
     navigation.navigate("BottomTabNavigator");
     Alert.alert("", "Vos données ont été enregistées !");
   };
@@ -89,48 +93,48 @@ export default function AccountEdit() {
         <View style={{ marginBottom: 40, marginHorizontal: 30 }}>
           <ModifyInfoComp
             prop={"Nom"}
-            value={"Bodin"}
+            value={lastName}
             onChangeText={(lastName) => setLastName(lastName)}
           />
           <ModifyInfoComp
             prop={"Prénom"}
-            value={"Guillaume"}
+            value={firstName}
             onChangeText={(firstName) => setFirstName(firstName)}
           />
           <ModifyInfoComp
             prop={"Age"}
-            value={"65"}
+            value={age != null ? age.toString() : "A remplir"}
             onChangeText={(age) => setAge(age)}
           />
           <ModifyInfoComp
             prop={"Tél."}
-            value={"0745573829"}
+            value={phone != null ? phone.toString() : "A remplir"}
             onChangeText={(phone) => setPhone(phone)}
           />
           <ModifyInfoComp
             prop={"Mail"}
-            value={"guillaume-b@hotmail.com"}
+            value={email}
             onChangeText={(email) => setEmail(email)}
           />
           <ModifyInfoComp
             prop={"Activité"}
-            value={"Professeur des écoles"}
+            value={job != null ? job : "A remplir"}
             onChangeText={(job) => setJob(job)}
           />
           <ModifyInfoComp
             prop={"Ville"}
-            value={"Paris"}
+            value={town != null ? town : "A remplir"}
             onChangeText={(town) => setTown(town)}
           />
           <ModifyInfoComp
             prop={"Pays"}
-            value={"France"}
+            value={country != null ? country : "A remplir"}
             onChangeText={(country) => setCountry(country)}
           />
           <Text style={styles.prop}>Bio</Text>
           <TextInput
             style={styles.textInput}
-            placeholder={bio}
+            placeholder={bio != null ? bio : "Entrez votre bio..."}
             numberOfLines={5}
             multiline={true}
             value={bio}
@@ -140,7 +144,7 @@ export default function AccountEdit() {
         <View
           style={{ width: "100%", alignItems: "center", paddingHorizontal: 40 }}
         >
-          <CustomButton text={"Enregistrer"} onPress={onQuitPress} />
+          <CustomButton text={"Enregistrer"} onPress={onSavePress} />
         </View>
       </ScrollView>
     </SafeAreaView>
