@@ -8,9 +8,9 @@ This app was this year's JAC project. Junior ISEP Academy, created and managed b
 
 Develop a FullStack Mobile App from scratch by using NestJS, React Native and TypeScript.
 <br> Features I implemented so far :
-<br> -Role based Authorization
-<br> -Authentication
-<br> -Event Management
+<br> -Most of the front end is hard Coded
+<br> -Registration and Login both works
+
 
 ## GitHub repositories
 - Back End : https://github.com/ippoboi/jac-back (Nest JS)
